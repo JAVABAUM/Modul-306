@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="topnav">
+      <a>JAVABAUM Vermögenskalkulator</a>
+      
+      <a href="#about">About</a>
+    </div>
     <h1>Finanzplaner</h1>
     <p>Wie lange brauche ich um finanziell Unabhängig zu sein?</p>
     <hr />
@@ -66,5 +71,17 @@ export default {
 }
 .main-form {
   margin-top: 2rem;
+}
+.topnav {
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
 </style>
