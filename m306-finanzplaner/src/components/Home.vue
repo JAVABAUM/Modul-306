@@ -2,7 +2,7 @@
   <div>
     <div class="topnav">
       <a>JAVABAUM Vermögenskalkulator</a>
-      
+
       <a href="#about">About</a>
     </div>
     <h1>Finanzplaner</h1>
@@ -75,6 +75,8 @@
         <p v-if="what_to_calculate">Kapital Berechnen</p>
         <p v-else>Jahre Berechnen</p>
       </button>
+
+      <h3>{{ result }}</h3>
     </div>
   </div>
 </template>
@@ -96,18 +98,25 @@ export default {
       current_stockvalue: 0,
       expected_yearly_dividends_percent: 0,
       what_to_calculate: true,
+      result:''
     };
   },
   methods: {
     calculate() {
       if (this.what_to_calculate) {
-        this.calculate_capital();
+        this.calculate_amount();
       } else {
         this.calculate_years();
       }
     },
     calculate_year() {},
-    calculate_amount() {},
+    calculate_amount() {
+      var fire = this.current_expense;
+      fire = fire * 12;
+      fire = fire / 0.03;
+      fire = fire - this.current_wealth;
+      this.result = "Kapital benötigt " + fire;
+    },
   },
 };
 </script>
