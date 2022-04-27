@@ -119,7 +119,6 @@ export default {
 .main-form {
   margin-top: 2rem;
 }
-<<<<<<< Updated upstream
 .topnav {
   overflow: hidden;
 }
@@ -133,6 +132,3 @@ export default {
   font-size: 17px;
 }
 </style>
-=======
-</style>
->>>>>>> Stashed changes
