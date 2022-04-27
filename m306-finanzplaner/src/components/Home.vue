@@ -12,44 +12,81 @@
       <form>
         <div class="form-group">
           <label for="current_wealth">Aktuelles Kapital</label>
-          <input id="current_wealth" v-model="current_wealth" />
+          <input
+            type="number"
+            min="0"
+            id="current_wealth"
+            v-model="current_wealth"
+          />
         </div>
         <div class="form-group">
           <label for="current_income">Aktuelles Einkommen</label>
-          <input id="current_income" v-model="current_income" />
+          <input
+            type="number"
+            min="0"
+            id="current_income"
+            v-model="current_income"
+          />
         </div>
         <div class="form-group">
           <label for="current_expense">Aktuelle Ausgaben</label>
-          <input id="current_expense" v-model="current_expense" />
+          <input
+            type="number"
+            min="0"
+            id="current_expense"
+            v-model="current_expense"
+          />
         </div>
         <div class="form-group">
-          <label for="current_montly_deposit"
+          <label for="current_monthly_deposit"
             >Aktuelle monatliche Einzahlungen</label
           >
-          <input id="current_montly_deposit" v-model="current_montly_deposit" />
+          <input
+            type="number"
+            min="0"
+            id="current_monthly_deposit"
+            v-model="current_monthly_deposit"
+          />
         </div>
         <div class="form-group">
           <label for="current_stockvalue">Aktuelles Aktienkapital</label>
-          <input id="current_stockvalue" v-model="current_stockvalue" />
+          <input
+            type="number"
+            min="0"
+            id="current_stockvalue"
+            v-model="current_stockvalue"
+          />
         </div>
         <div class="form-group">
           <label for="expected_yearly_dividends_percent"
             >Erwartete jährliche Dividenden</label
           >
           <input
+            type="number"
+            min="0"
             id="expected_yearly_dividends_percent"
             v-model="expected_yearly_dividends_percent"
           />
         </div>
       </form>
+      <toggle-button v-model="what_to_calculate" />
+
+      <button @click="calculate">
+        <p v-if="what_to_calculate">Kapital Berechnen</p>
+        <p v-else>Jahre Berechnen</p>
+      </button>
     </div>
   </div>
 </template>
 
-
 <script>
+import { ToggleButton } from "vue-js-toggle-button";
 export default {
   name: "Home",
+  components: {
+    ToggleButton,
+  },
+
   data() {
     return {
       current_wealth: 0,
@@ -58,12 +95,22 @@ export default {
       current_monthly_deposit: 0,
       current_stockvalue: 0,
       expected_yearly_dividends_percent: 0,
+      what_to_calculate: true,
     };
   },
-  methods: {},
+  methods: {
+    calculate() {
+      if (this.what_to_calculate) {
+        this.calculate_capital();
+      } else {
+        this.calculate_years();
+      }
+    },
+    calculate_year() {},
+    calculate_amount() {},
+  },
 };
 </script>
-
 
 <style scoped>
 .form-group {
@@ -72,6 +119,7 @@ export default {
 .main-form {
   margin-top: 2rem;
 }
+<<<<<<< Updated upstream
 .topnav {
   overflow: hidden;
 }
@@ -85,3 +133,6 @@ export default {
   font-size: 17px;
 }
 </style>
+=======
+</style>
+>>>>>>> Stashed changes
