@@ -69,7 +69,7 @@
           />
         </div>
       </form>
-      <toggle-button v-model="what_to_calculate" />
+      <toggle-button v-model="what_to_calculate" @click="clear_input" />
 
       <button @click="calculate">
         <p v-if="what_to_calculate">Kapital Berechnen</p>
@@ -98,7 +98,7 @@ export default {
       current_stockvalue: 0,
       expected_yearly_dividends_percent: 0,
       what_to_calculate: true,
-      result:''
+      result: "",
     };
   },
   methods: {
@@ -109,13 +109,31 @@ export default {
         this.calculate_years();
       }
     },
-    calculate_year() {},
+    calculate_years() {
+      var fire = this.calculate_fire();
+      var yearly_income =
+        this.current_income * 12 + this.current_monthly_deposit * 12;
+      var expected_dividend_value =
+        (this.current_stockvalue * this.expected_yearly_dividends_percent) /
+        100;
+      yearly_income = yearly_income + expected_dividend_value + this.current_stockvalue;
+      var years = fire / yearly_income;
+      fire = Math.round((fire + Number.EPSILON) * 100) / 100
+      this.result = "Jahre benötigt: " + years;
+    },
     calculate_amount() {
+      var fire = this.calculate_fire();
+      this.result = "Kapital benötigt: " + fire;
+    },
+    clear_input() {
+      this.result = "";
+    },
+    calculate_fire() {
       var fire = this.current_expense;
       fire = fire * 12;
       fire = fire / 0.03;
       fire = fire - this.current_wealth;
-      this.result = "Kapital benötigt " + fire;
+      return fire;
     },
   },
 };
