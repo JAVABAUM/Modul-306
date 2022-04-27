@@ -1,18 +1,15 @@
 <template>
   <div>
-    <div class="topnav">
-      <a>JAVABAUM Vermögenskalkulator</a>
-
-      <a href="#about">About</a>
-    </div>
-    <h1>Finanzplaner</h1>
+    <div class="topnav"></div>
+    <h1>Javabaum Finanzplaner</h1>
     <p>Wie lange brauche ich um finanziell Unabhängig zu sein?</p>
-    <hr />
     <div class="main-form">
+      <hr class="horizontal-ruler" />
       <form>
         <div class="form-group">
           <label for="current_wealth">Aktuelles Kapital</label>
           <input
+            @change="calculate"
             type="number"
             min="0"
             id="current_wealth"
@@ -22,6 +19,7 @@
         <div class="form-group">
           <label for="current_income">Aktuelles Einkommen</label>
           <input
+            @change="calculate"
             type="number"
             min="0"
             id="current_income"
@@ -31,6 +29,7 @@
         <div class="form-group">
           <label for="current_expense">Aktuelle Ausgaben</label>
           <input
+            @change="calculate"
             type="number"
             min="0"
             id="current_expense"
@@ -42,6 +41,7 @@
             >Aktuelle monatliche Einzahlungen</label
           >
           <input
+            @change="calculate"
             type="number"
             min="0"
             id="current_monthly_deposit"
@@ -51,6 +51,7 @@
         <div class="form-group">
           <label for="current_stockvalue">Aktuelles Aktienkapital</label>
           <input
+            @change="calculate"
             type="number"
             min="0"
             id="current_stockvalue"
@@ -62,6 +63,7 @@
             >Erwartete jährliche Dividenden</label
           >
           <input
+            @change="calculate"
             type="number"
             min="0"
             id="expected_yearly_dividends_percent"
@@ -77,6 +79,7 @@
       </button>
 
       <h3>{{ result }}</h3>
+      <hr class="horizontal-ruler" />
     </div>
   </div>
 </template>
@@ -116,9 +119,10 @@ export default {
       var expected_dividend_value =
         (this.current_stockvalue * this.expected_yearly_dividends_percent) /
         100;
-      yearly_income = yearly_income + expected_dividend_value + this.current_stockvalue;
+      yearly_income =
+        yearly_income + expected_dividend_value + this.current_stockvalue;
       var years = fire / yearly_income;
-      fire = Math.round((fire + Number.EPSILON) * 100) / 100
+      fire = Math.round((fire + Number.EPSILON) * 100) / 100;
       this.result = "Jahre benötigt: " + years;
     },
     calculate_amount() {
@@ -144,10 +148,14 @@ export default {
   margin-bottom: 1rem;
 }
 .main-form {
-  margin-top: 2rem;
+  margin: 2rem 4rem 2rem 4rem;
+}
+.horizontal-ruler{
+    margin: 1rem;
 }
 .topnav {
   overflow: hidden;
+  margin-bottom: 2rem;
 }
 
 .topnav a {
