@@ -91,7 +91,6 @@ export default {
   components: {
     ToggleButton,
   },
-
   data() {
     return {
       current_wealth: 0,
@@ -140,6 +139,13 @@ export default {
       return fire;
     },
   },
+  mounted() {
+    this.$isLoading(true);
+    var timeout = Math.floor(Math.random()*1000)+200;
+    setTimeout(() => {
+      this.$isLoading(false);
+    }, timeout);
+  },
 };
 </script>
 
@@ -150,8 +156,8 @@ export default {
 .main-form {
   margin: 2rem 4rem 2rem 4rem;
 }
-.horizontal-ruler{
-    margin: 1rem;
+.horizontal-ruler {
+  margin: 1rem;
 }
 .topnav {
   overflow: hidden;
