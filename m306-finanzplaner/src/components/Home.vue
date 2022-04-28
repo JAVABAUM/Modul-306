@@ -2,7 +2,10 @@
   <div>
     <div class="topnav"></div>
     <h1>Javabaum Finanzplaner</h1>
-    <p>Wie lange brauche ich um finanziell Unabhängig zu sein?</p>
+    <p v-if="what_to_calculate">
+      Wie viel brauche ich um finanziell Unabhängig zu sein?
+    </p>
+    <p v-else>Wie lange brauche ich um finanziell Unabhängig zu sein?</p>
     <div class="main-form">
       <hr class="horizontal-ruler" />
       <form>
@@ -71,12 +74,21 @@
           />
         </div>
       </form>
-      <toggle-button v-model="what_to_calculate" @click="clear_input" />
+      <div class="button-inline">
+        <p class="button-group-items">Modus ändern:</p>
+        <toggle-button
+          class="button-group-items"
+          v-model="what_to_calculate"
+          @click="clear_input"
+        />
 
-      <button @click="calculate">
-        <p v-if="what_to_calculate">Kapital Berechnen</p>
-        <p v-else>Jahre Berechnen</p>
-      </button>
+        <button @click="calculate" class="button-group-items">
+          <p class="button-group-items" v-if="what_to_calculate">
+            Kapital Berechnen
+          </p>
+          <p class="button-group-items" v-else>Jahre Berechnen</p>
+        </button>
+      </div>
 
       <h3>{{ result }}</h3>
       <hr class="horizontal-ruler" />
@@ -141,7 +153,7 @@ export default {
   },
   mounted() {
     this.$isLoading(true);
-    var timeout = Math.floor(Math.random()*1000)+200;
+    var timeout = Math.floor(Math.random() * 1000) + 200;
     setTimeout(() => {
       this.$isLoading(false);
     }, timeout);
@@ -158,6 +170,14 @@ export default {
 }
 .horizontal-ruler {
   margin: 1rem;
+}
+.button-inline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-group-items {
+  margin: 0.5rem;
 }
 .topnav {
   overflow: hidden;
