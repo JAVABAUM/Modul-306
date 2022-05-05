@@ -10,7 +10,7 @@
       <hr class="horizontal-ruler" />
       <form>
         <div class="form-group">
-          <label for="current_wealth">Aktuelles Kapital</label>
+          <label for="current_wealth">Aktuelles Kapital (CHF)</label>
           <input
             @change="calculate"
             type="number"
@@ -20,7 +20,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="current_income">Aktuelles Einkommen</label>
+          <label for="current_income">Aktuelles Einkommen (CHF)</label>
           <input
             @change="calculate"
             type="number"
@@ -30,7 +30,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="current_expense">Aktuelle Ausgaben</label>
+          <label for="current_expense">Aktuelle Ausgaben (CHF)</label>
           <input
             @change="calculate"
             type="number"
@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
           <label for="current_monthly_deposit"
-            >Aktuelle monatliche Einzahlungen</label
+            >Aktuelle monatliche Einzahlungen (CHF)</label
           >
           <input
             @change="calculate"
@@ -52,7 +52,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="current_stockvalue">Aktuelles Aktienkapital</label>
+          <label for="current_stockvalue">Aktuelles Aktienkapital (CHF)</label>
           <input
             @change="calculate"
             type="number"
@@ -63,7 +63,7 @@
         </div>
         <div class="form-group">
           <label for="expected_yearly_dividends_percent"
-            >Erwartete jährliche Dividenden</label
+            >Erwartete jährliche Dividenden (%)</label
           >
           <input
             @change="calculate"
