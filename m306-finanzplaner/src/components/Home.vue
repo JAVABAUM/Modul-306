@@ -147,10 +147,11 @@ export default {
       this.result = "";
     },
     calculate_fire() {
+      var wealth = parseFloat(this.current_stockvalue) + parseFloat(this.current_wealth);
       var fire = this.current_expense;
       fire = fire * 12;
       fire = fire / 0.03;
-      fire = fire - this.current_wealth;
+      fire = fire - wealth;
       return fire;
     },
   },
