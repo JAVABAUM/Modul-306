@@ -127,11 +127,14 @@ export default {
       var fire = this.calculate_fire();
       var yearly_income =
         this.current_income * 12 + this.current_monthly_deposit * 12;
-      var expected_dividend_value =
-        (this.current_stockvalue * this.expected_yearly_dividends_percent) /
-        100;
+      if(this.expected_yearly_dividends_percent == 0){
+        var expected_dividend_value = 0;
+      }
+      else{
+        var expected_dividend_value = this.current_stockvalue * this.expected_yearly_dividends_percent / 100;
+      }
       yearly_income =
-        yearly_income + expected_dividend_value + this.current_stockvalue;
+        yearly_income + expected_dividend_value;
       var years = fire / yearly_income;
       fire = Math.round((fire + Number.EPSILON) * 100) / 100;
       this.result = "Jahre benötigt: " + years;
